@@ -1,0 +1,18 @@
+doctype html 
+html
+  head
+    title #{pageTitle}
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/css/style")
+
+  body
+    include ../partials/header.pug
+    block content1
+    block content2
+    include ../partials/footer.pug
+<!-- jQuery library -->
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js")
+
+<!-- Latest compiled JavaScript -->
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js")
+    script(src="/js/script.js") 
