@@ -1,22 +1,30 @@
 const express = require('express');
-// const mongoose = require('mongoose');
-
 require("dotenv").config();
+
+const database = require('./config/database');
+
+const systemConfig = require('./config/system');
+
+// khai baso route index
 const route = require("./routes/client/index-router");
+const routeAdmin = require("./routes/admin/index-router");
 
-// async function main() {
-//     await mongoose.connect('mongodb://localhost:27017/product-management');
+database.connect();
 
-//     // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
-// }
-const app = express()
-const port = process.env.PORT
+const app = express();
+const port = process.env.PORT;
 
 app.set('views', './views')
 app.set('view engine', 'pug')
+// khai báo biến locals dùng đc bất kì đâu
+app.locals.prefixAdmin = systemConfig.prefixAdmin
+
 // file tĩnh dùng để public
-app.use(express.static("public"))
-route(app)
+app.use(express.static("public"));
+
+route(app);
+routeAdmin(app);
+
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`)
