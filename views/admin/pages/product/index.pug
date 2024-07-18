@@ -1,19 +1,18 @@
 extends ../../layouts/default.pug
+include ../../mixins/filter-status.pug
+include ../../mixins/search.pug
+
 block main 
     h1 Danh sách sản phẩm 
 
     .card.mb-3 
         .card-header Bộ lọc và tìm kiếm
         .card-body 
-            button(
-                class="btn btn-sm ml-1 btn-outline-success active"
-            ) Tất cả
-            button(
-                class="btn btn-sm ml-1 btn-outline-success"
-            ) Hoạt động
-            button(
-                class="btn btn-sm ml-1 btn-outline-success active"
-            ) Dừng hoạt động
+            .row 
+                .col-6
+                    +filter-status(filterStatus)
+                .col-6
+                    +find-product(keyword)
     table
         thead
             tr
@@ -26,7 +25,7 @@ block main
             tbody  
                 each item, index in products    
                     tr 
-                        td #{idex + 1 }
+                        td #{index + 1}
                         td 
                             img(
                                 source=item.thumbnail
