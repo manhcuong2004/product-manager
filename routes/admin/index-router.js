@@ -7,6 +7,6 @@ module.exports = (app) => {
     const PATH_ADMIN = systemConfig.prefixAdmin;
     app.use(PATH_ADMIN + '/dashboard', dashboardRouters)
 
-    app.use(PATH_ADMIN + '/product', productRouters)
+    app.use(PATH_ADMIN + '/products', productRouters)
 }
 
