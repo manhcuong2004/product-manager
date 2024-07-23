@@ -3,10 +3,11 @@ include ../../mixins/filter-status.pug
 include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/form-change-multi.pug
+include ../../mixins/alert.pug
 
 block main 
+    +alert-success(4000)
     h1 Danh sách sản phẩm 
-
     .card.mb-3 
         .card-header Bộ lọc và tìm kiếm
         .card-body
@@ -15,7 +16,15 @@ block main
                     +filter-status(filterStatus)
                 .col-6
                     +find-product(keyword)
-    +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+    .col-8
+        +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+    
+    .col-4 
+        a(
+            href=`${prefixAdmin}/products/create`
+            class="btn btn-outline-success"
+        ) + Thêm mới
+    
     table(
         class="table table-hover table-sm"
         checkbox-multi
@@ -28,6 +37,7 @@ block main
                 th Hình Ảnh
                 th Tiêu đề
                 th Giá
+                th Vị trí
                 th Trạng thái
                 th Hành động
             tbody  
@@ -50,6 +60,14 @@ block main
                         td #{item.title}
                         td #{item.price}
                         td 
+                            input(
+                                type="number"
+                                value=item.position 
+                                style="width:60px"
+                                min="1"
+                                name="position"
+                            )
+                        td 
                             if(item.status=="active")
                                 a(
                                     href="javascript:;"
@@ -67,7 +85,14 @@ block main
                                     class="badge badge-success"
                                     ) Dừng hoạt động
                         td
-                            button(class="btn btn-warning btn-sm") Sửa
+                            a(
+                                class="btn btn-second btn-sm"
+                                href=`${prefixAdmin}/products/detail/${item.id}`
+                                ) Chi tiết
+                            a(
+                                class="btn btn-warning btn-sm"
+                                href=`${prefixAdmin}/products/edit/${item.id}`
+                                ) Sửa
                             button(
                                 class="btn btn-danger btn-sm ml-1"
                                 button-delete

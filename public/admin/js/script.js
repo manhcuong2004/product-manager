@@ -98,7 +98,17 @@ if (formChangeMulti) {
 
             inputsChecked.forEach(input => {
                 const id = input.value;
-                ids.push(id);
+
+                if (typeChange == "change-position") {
+                    const position = input
+                        .closest("tr")
+                        .querySelector("input[name='position']").value;
+                    console.log(`${id}-${position}`);
+                    ids.push(`${id}-${position}`);
+                } else {
+                    ids.push(id);
+                }
+
             });
 
             inputIds.value = ids.join(", ");
@@ -109,6 +119,15 @@ if (formChangeMulti) {
     })
 }
 
+const showAlert = document.querySelector("[show-alert]");
+if (showAlert) {
+    const time = parseInt(showAlert.getAttribute("data-time"));
+
+    setTimeout(() => {
+        showAlert.classList.add("alert-hidden");
+    }, time)
+
+}
 
 
 

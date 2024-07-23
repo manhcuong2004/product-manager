@@ -1,0 +1,16 @@
+[show-alert].alert-hidden {
+    animation-name: alert-hidden;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes alert-hidden {
+    from {
+        right: 15%;
+    }
+
+    to {
+        right: -100%;
+        display: none;
+    }
+}
