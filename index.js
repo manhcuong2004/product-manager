@@ -19,7 +19,7 @@ app.use(methodOverride('_method'))
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.set('views', `${__dirname}views`)
+app.set('views', `${__dirname}/views`)
 app.set('view engine', 'pug')
 
 //flash
