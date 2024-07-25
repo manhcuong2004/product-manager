@@ -10,6 +10,8 @@ module.exports.product = async (req, res) => {
     let find = {
         deleted: false,
     };
+    const countProducts = await Product.countDocuments(find);
+
 
     if (req.query.status) {
         find.status = req.query.status;
@@ -21,7 +23,6 @@ module.exports.product = async (req, res) => {
     }
 
     // Pagination
-    const countProducts = await Product.countDocuments(find);
 
     let objectPagination = paginationHelper({
         currentPage: 1,
