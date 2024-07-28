@@ -1,7 +1,13 @@
-//- header.header 
-//-     .col-9 
-//-         .inner-menu 
-//-             ul 
-//-                 li
-//-                     a(href=`${prefixAdmin}/dashboard`) Admin
+header.header 
+    .col-3 
+        ul 
+            li
+                a(href=`${prefixAdmin}/dashboard`) Admin
+
+    .col-9
+        div(vlass="text-right")
+            a(
+                href=`${prefixAdmin}/auth/logout`
+                class="btn btn-danger btn-sm"
+            ) Đăng xuất
                

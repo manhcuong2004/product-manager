@@ -1,0 +1,39 @@
+extends ../../layouts/default.pug
+include ../../mixins/table-tree.pug
+block main
+    if(role.permissions.includes("roles_view"))
+        h1 Nhóm quyền
+        .col-4 
+            a(
+                href=`${prefixAdmin}/roles/create`
+                class="btn btn-outline-success"
+            ) + Thêm mới
+        table(
+            class="table table-hover table-sm"
+        )
+            thead
+                tr
+                    th STT
+                    th Nhóm quyền
+                    th Mô tả ngắn
+                    th Hành động
+                tbody 
+                    if(records.length>0) 
+                        each item, index in records    
+                            tr 
+                                td #{index+1}
+                                td #{item.title}
+                                td #{item.description}  
+                                td                                     
+                                    a(
+                                        href=`${prefixAdmin}/roles/detail/${item.id}`
+                                        class="badge badge-success btn-sm"
+                                        ) Chi tiết
+                                    a(
+                                        href=`${prefixAdmin}/roles/edit/${item.id}`
+                                        class="badge badge-warning btn-sm ml-1"
+                                        ) Sửa
+                    else
+                        tr
+                            td(colspan="4" class="text-center") Chưa có nhóm quyền nào được tạo
+                                

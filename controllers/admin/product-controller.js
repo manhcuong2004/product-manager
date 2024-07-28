@@ -1,8 +1,11 @@
 const Product = require("../../models/product-model");
+const ProductCategory = require("../../models/product-category-model");
+
 const systemConfig = require("../../config/system")
 const FilterStatusHelper = require("../../helpers/filterStatus")
 const FindProductHelper = require("../../helpers/findProduct")
 const paginationHelper = require("../../helpers/pagination")
+const createTreeHelper = require("../../helpers/createTree");
 
 module.exports.product = async (req, res) => {
 
@@ -112,8 +115,15 @@ module.exports.deleteItem = async (req, res) => {
 }
 
 module.exports.create = async (req, res) => {
+    let find = {
+        deleted: false,
+    };
+    const category = await ProductCategory.find(find);
+    const newCategory = createTreeHelper.tree(category);
+
     res.render('admin/pages/product/create', {
         pageTitle: "Thêm mới sản phẩm",
+        category: newCategory
     })
 }
 
@@ -142,10 +152,17 @@ module.exports.edit = async (req, res) => {
             _id: req.params.id
         };
 
+        const category = await ProductCategory.find({
+            deleted: false
+        });
+        const newCategory = createTreeHelper.tree(category);
+
+
         const product = await Product.findOne(find);
         res.render('admin/pages/product/edit', {
             pageTitle: "Chỉnh sửa sản phẩm sản phẩm",
-            product: product
+            product: product,
+            category: newCategory
         })
     } catch (error) {
         res.redirect(`${systemConfig.prefixAdmin}/products`)
@@ -165,12 +182,12 @@ module.exports.editPatch = async (req, res) => {
     }
     try {
         await Product.updateOne({ _id: id }, req.body)
-        req.flash('success', 'Sửa thành công thành công!');
+        req.flash('success', 'Sửa thành công!');
 
     } catch (error) {
-
+        res.redirect(`${systemConfig.prefixAdmin}/products`)
     }
-    res.redirect(`back`)
+    res.redirect(`${systemConfig.prefixAdmin}/products`)
 
 }
 
