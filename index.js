@@ -5,6 +5,10 @@ const flash = require('express-flash')
 const cookieParser = require('cookie-parser')
 const expresSession = require('express-session')
 
+const http = require('http');
+const { Server } = require("socket.io");
+
+
 const systemConfig = require('./config/system');
 const database = require('./config/database');
 // khai baso route index
@@ -15,6 +19,12 @@ const bodyParser = require('body-parser');
 database.connect();
 const app = express();
 const port = process.env.PORT;
+
+//socketio
+const server = http.createServer(app);
+const io = new Server(server);
+global._io = io
+//end socket
 app.use(methodOverride('_method'))
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -36,8 +46,12 @@ app.use(express.static(`${__dirname}/public`));
 
 route(app);
 routeAdmin(app);
+app.get("*", (req, res) => {
+    res.render("client/pages/errors/404", {
+        pageTitle: "404 Not Found",
+    })
+})
 
-
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`App listening on port ${port}`)
 })

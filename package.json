@@ -22,7 +22,8 @@
     "mongoose": "^8.5.1",
     "mongoose-slug-updater": "^3.3.0",
     "multer": "*",
-    "pug": "^3.0.3"
+    "pug": "^3.0.3",
+    "socket.io": "^4.7.5"
   },
   "devDependencies": {
     "@types/node": "^20.14.11",

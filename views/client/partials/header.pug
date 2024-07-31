@@ -1,3 +1,5 @@
+include ../mixins/sub-menu.pug
+
 header.header 
     .col-9 
         .inner-menu 
@@ -5,4 +7,17 @@ header.header
                 li
                     a(href="/") Trang chủ
                 li
-                    a(href="/products") Sản Phẩm
+                    -const pathProduct = "/products"
+                    a(href=pathProduct) Sản Phẩm
+                    +sub-menu(layoutsProductsCategory, pathProduct)
+                if(user)
+                    li 
+                        a(href="/chat") Chat
+                    li 
+                        a(href="/user/logout") Đăng xuất
+                else
+                    li 
+                        a(href="/user/register") Đăng kí 
+                    li 
+                        a(href="/user/login") Đăng nhập 
+                        
