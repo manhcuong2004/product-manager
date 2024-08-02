@@ -20,7 +20,7 @@ module.exports.registerPost = async (req, res) => {
     const user = new User(req.body);
     await user.save();
     res.cookie("tokenUser", user.tokenUser);
-    res.send("/")
+    res.redirect("/")
 }
 
 

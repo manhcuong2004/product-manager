@@ -1,5 +1,4 @@
 const tablePermissions = document.querySelector("[table-permissions]");
-console.log(tablePermissions)
 if (tablePermissions) {
     const buttonSubmit = document.querySelector("[button-submit]");
 
@@ -48,7 +47,6 @@ if (dataRecords) {
         const permissions = record.permissions;
         permissions.forEach(permission => {
             const row = tablePermissions.querySelector(`[data-name="${permission}"]`)
-            console.log(row)
 
             const input = row.querySelectorAll("input")[index];
 

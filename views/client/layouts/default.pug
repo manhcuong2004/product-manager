@@ -3,8 +3,9 @@ html
   head
     title #{pageTitle}
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css")
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css')
     link(rel="stylesheet", href="/css/style.css")
-
+    link(rel="stylesheet", href="https://unpkg.com/file-upload-with-preview/dist/style.css")
   body
     include ../partials/header.pug
     block main
@@ -14,9 +15,16 @@ html
 
 <!-- Latest compiled JavaScript -->
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js")
-    
 
+    script(type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js")
+
+    script(src="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.iife.js")
     //- socket
     script(src="/socket.io/socket.io.js")
-    script(src="/js/script.js") 
     script(src="/js/socket.js") 
+    script(src="/js/script.js") 
+    
+    
+      block script
+//- script(type="module" src="/js/chat.js")
+     

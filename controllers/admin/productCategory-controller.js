@@ -53,7 +53,6 @@ module.exports.edit = async (req, res) => {
         });
         const newRecords = createTreeHelper.tree(records);
 
-        console.log(records);
         res.render('admin/pages/product-category/edit', {
             pageTitle: "Chỉnh sửa danh mục sản phẩm",
             data: data,

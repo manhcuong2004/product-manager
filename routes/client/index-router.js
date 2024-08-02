@@ -2,11 +2,12 @@ const productRouters = require('./product-router')
 const homeRouters = require('./home-router')
 const chatRouters = require('./chat-router')
 const userRouters = require('./user-router')
+const usersRouters = require('./users-router')
 
 const userMiddleware = require('../../middleware/client/user-middleware')
 const categoryMiddleware = require('../../middleware/client/category-middleware')
 const settingMiddleware = require('../../middleware/client/setting-middleware')
-const authMiddleware = require('../../middleware/admin/auth-middleware')
+const authMiddleware = require('../../middleware/client/auth-middleware')
 
 module.exports = (app) => {
     app.use(categoryMiddleware.category)
@@ -15,6 +16,7 @@ module.exports = (app) => {
     app.use('/', homeRouters)
     app.use('/products', productRouters)
     app.use('/user', userRouters)
+    app.use('/users', authMiddleware.requireAuth, usersRouters)
     app.use('/chat', authMiddleware.requireAuth, chatRouters)
 
 }

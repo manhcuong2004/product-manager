@@ -7,3 +7,152 @@
     color: white;
     text-align: center;
 }
+
+.chat .inner-body .inner-name {
+    margin-bottom: auto;
+}
+
+.chat .inner-foot {
+    border-top: 1px solid #ddd;
+    padding: 10px;
+}
+
+.chat .inner-form {
+    display: flex;
+    align-items: center;
+}
+
+.inner-body {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+/* Darker chat container */
+.inner-incoming {
+    background: #ddd;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    max-width: 220px;
+    border-radius: 15px;
+    line-height: 1.4;
+}
+
+/* Clear floats */
+.inner-outgoing {
+    background: #ffa3f1;
+    margin-left: auto;
+    padding: 5px 10px;
+    max-width: 220px;
+    border-radius: 15px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.tooltip {
+    visibility: hidden;
+}
+
+.tooltip.shown {
+    visibility: visible;
+    opacity: 1;
+}
+
+.box-typing .inner-dots {
+    position: relative;
+    height: 20px;
+    width: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #dedede;
+    border-radius: 45px;
+    margin-top: 20px;
+}
+
+.box-typing .inner-dots span {
+    animation: blink 1.5s infinite;
+    height: 5px;
+    width: 5px;
+    background: #030303;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 3px;
+}
+
+.box-typing .inner-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.box-typing .inner-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0.1;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.1;
+    }
+}
+
+.box-user {
+    display: flex;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.box-user [btn-cancel-friend] {
+    display: none;
+}
+
+.box-user.add [btn-add-friend] {
+    display: none;
+}
+
+.box-user.add [btn-cancel-friend] {
+    display: inline-block;
+}
+
+.box-user [btn-deleted-friend] {
+    display: none;
+}
+
+.box-user.refuse [btn-accept-friend] {
+    display: none;
+}
+
+.box-user.refuse [btn-refuse-friend] {
+    display: none;
+}
+
+.box-user.refuse [btn-deleted-friend] {
+    display: inline-block;
+}
+
+.box-user [btn-accepted-friend] {
+    display: none;
+}
+
+.box-user.accepted [btn-accepted-friend] {
+    display: none;
+}
+
+.box-user.accepted [btn-refuse-friend] {
+    display: none;
+}
+
+.box-user.accepted [btn-accepted-friend] {
+    display: inline-block;
+}
