@@ -10,6 +10,13 @@ module.exports.requireAuth = async (req, res, next) => {
             res.redirect(`/user/login`);
         } else {
             res.locals.user = user;
+
+            _io.once('connertion', (socket) => {
+                console.log('a user connected');
+                socket.on('disconnect', () => {
+                    console.log('user disconnected');
+                })
+            });
             next();
         }
     }

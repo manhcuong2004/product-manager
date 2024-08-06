@@ -141,11 +141,12 @@
     display: inline-block;
 }
 
+
 .box-user [btn-accepted-friend] {
     display: none;
 }
 
-.box-user.accepted [btn-accepted-friend] {
+.box-user.accepted [btn-accept-friend] {
     display: none;
 }
 
@@ -155,4 +156,16 @@
 
 .box-user.accepted [btn-accepted-friend] {
     display: inline-block;
+}
+
+.box-user .inner-status {
+    font-size: 12px;
+    color: green;
+    opacity: 0;
+
+}
+
+.box-user .inner-status[status="online"] {
+    opacity: 1;
+
 }

@@ -3,12 +3,13 @@ const Chat = require("../../models/chat-model")
 const User = require("../../models/user-model")
 const chatSocket = require("../../socket/client/chat-socket");
 module.exports.chat = async (req, res) => {
-
+    const roomChatId = req.params.roomChatId;
     //socket
-    chatSocket(res)
+    chatSocket(req, res)
 
     //lấy data
     const chats = await Chat.find({
+        room_chat_id: roomChatId,
         deleted: false
     });
     for (const chat of chats) {
